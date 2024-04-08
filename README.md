@@ -1,50 +1,94 @@
-# 2. variable(변수)
+# 데이터형(Data Type)
 
-- 데이터가 컴퓨터 메모리에 저장되는 주소
+- number : 숫자
+- string : 문자
+- boolean : true/false
+- null
+- undefined
+- Bigint
+- object : 객체
+- symbol
 
-# 2.1 변수 선언
-
-- var, let, const
--
--
-- const : 우리는 무조건 이거씀
-  - 바꿀수없는값.
-    - react에선 const도 값을 바꿀 수 있다.
-    - 상수 때문에 오류가 날 시 : let을 쓰자.
-- const를 주로 사용하고 안되면 let으로 바꾸자.
-- 순서로 읽는다.
-  : html > css > js
-- body 아래에 선언<script>
-- head 아래에 선언- 아직은 x
-
-# 오류
-
-- Assignment to constant variable
-  - const 선언 후 할당 된 값 변경하려 할 때 오류
+## 3.1 숫자 number
 
 ```js
-let keyword = "키워드 let으로 변수 keyword을 선언";
+const a = 3; // 정수(integer)
+const b = 5.7; // 부동 소수점 숫자 (floating point number)
+const c = 123e3; // 123000(e) 123*1000임
+const d = 123e-3; // 0.123
 
-console.log("1" + ". " + keyword);
-// 필요에 따라 값을 재할당 할 수 있다.
-keyword = "변수 keyword에 홍길동 저장 keyword은 홍길동 값을 가짐";
-console.log("2" + ". " + keyword);
+console.log(a);
+console.log(b);
+console.log(c);
+console.log(d);
 ```
 
-## 2.2 변수 이름 짓기
+## 3.2 Bigint
 
-- 변수 이름에는 영어, 숫자, 밑줄, $ 다 사용은 가능함.
-
-- **숫자로 시작하면 안됨.**
-- 대소문자 구분
-- 일반적으로 카멜케이스 사용
-- 변수이름
-- ex)
+- 정수는 15개의 숫자, 15자리 정수까지 나타낼 수 있다.
+- 그 이상의 정수를 사용하려면 Bigint 형을 사용해야한다.
+- 뒤에 n 붙이면 bigint
 
 ```js
-const a = 5;
-const font1 = "돋움";
-const _prics = 3000;
-const maxWidth = 600;
-const max_width = 800;
+// 문자열
+const text1 = "사 과"; // 큰 따옴표 사용
+console.log("text1에 저장된 내용: ", text1);
+// 문자열의 length 프로퍼티 사용,공백도 포함 , 문자열의 길이.
+
+console.log(`text1의 문자열 길이는` + text1.length + `입니다`);
+
+let username = "홍길동";
+let age = 30;
+let text2 = "이름 :" + username + "나이 : " + age;
+console.log(text2);
+
+// 템플릿 문자열 ``
+// 최신문법
+let text3 = `이름 : ${username}, 나이: ${age}`;
+console.log(text3);
+const text4 = "";
 ```
+
+## Boolean
+
+```js
+let x = 5 > 3; // true
+
+let y = 5 < 3; // false
+
+console.log(x);
+console.log(y);
+```
+
+## undefined, null(빈문자열)
+
+```js
+let xy;
+console.log(xy);
+let yx = "";
+console.log(typeof yx);
+```
+
+## 객체 object
+
+```js
+// 객체 자체
+// 객체 지향 언어
+const member = {
+  id: "kdhong",
+  name: "홍길동",
+  age: "20",
+};
+console.log(member);
+// 객체 내부 데이터 접근
+console.log(`아이디 : ${member.id}`);
+console.log(member.id);
+console.log(member.name);
+console.log(member.age);
+```
+
+## 심볼 symbol
+
+- number, string, boolean과 같은 원시데이터
+
+- 유일한 식별자로서 객체의 속성을 추가하는데 사용

@@ -49,7 +49,7 @@ console.log(text3);
 const text4 = "";
 ```
 
-## Boolean
+## 3.3. Boolean
 
 ```js
 let x = 5 > 3; // true
@@ -60,7 +60,7 @@ console.log(x);
 console.log(y);
 ```
 
-## undefined, null(빈문자열)
+## 3.4. undefined, null(빈문자열)
 
 ```js
 let xy;
@@ -69,7 +69,7 @@ let yx = "";
 console.log(typeof yx);
 ```
 
-## 객체 object
+## 3.5. 객체 object
 
 ```js
 // 객체 자체
@@ -87,8 +87,41 @@ console.log(member.name);
 console.log(member.age);
 ```
 
-## 심볼 symbol
+## 3.6. 심볼 symbol
 
 - number, string, boolean과 같은 원시데이터
 
 - 유일한 식별자로서 객체의 속성을 추가하는데 사용
+
+```js
+const members = {
+  name: "홍길동",
+  age: 30,
+};
+// Symbol()로 id 생성
+let id = Symbol("id");
+
+// 객체 member의 키 id에 문자열 "kdhong" 저장
+// 심볼 id가 객체의 키로 사용되면 심볼 데이터형은
+// 유일한 식별자이기 때문에 객체의 키 이름이 겹쳐서 충돌하는 경우 방지
+member[id] = "kdhong";
+console.log(member.id);
+console.log(id);
+
+// 객체 member에서 심볼 id가 키로 사용된 요소는
+// member[id]에 의해 접근 할 수 있다.
+// 심볼 id와 새롭게 생성된 Symbol("id")는 서로 다르다
+// 고유한 값을 리턴함.
+// 생성 할때마다 다른값을 줌.
+console.log(id === Symbol("id"));
+```
+
+## 3.8. 배열 array
+
+- index는 0부터 시작
+
+```js
+const car = ["현대", "기아", "벤츠", "BMW"];
+
+console.log(car[0]);
+```

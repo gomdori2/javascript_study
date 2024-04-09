@@ -1,109 +1,95 @@
-# 6. if 문
+# 8. for 문
 
-## 6.1 if ~ 구문
+## 8.1 for 문
 
-- 참, 거짓에 따라 특정 코드의 실행을 제어
-
-```text
-  if(조건/조건식){
-    문장;
-    ...
-  }
-```
+- 특정 코드를 반복해서 실행 for, while, do while
 
 ```js
-let x = 10000; // 입장료 10000원
-let age = 70;
-
-if (age >= 65) {
-  // 입장료 : 0원
-  x = 0;
-}
-console.log(`입장료 : ${x} 원`);
-
-// 웹사이트 관리자 아이디(id)가 admin이거나 level이 1인 경우라고 가정
-// 관리자일 경우 "관리자입니다." 라고 출력
-let id = "admin";
-let level = 5;
-
-if (id === "admin" || level === 1) {
-  console.log(`관리자 입니다.`);
-}
-
-// 필기시험 성적과 실기시험 성적 모두 80이상 합격
-
-let score1 = 95; // 필기
-let score2 = 80; // 실기
-
-if (score1 >= 80 && score2 > 80) {
-  console.log("합격입니다.");
-}
-```
-
-## 6.2. if ~ else ~ 구문
-
-```txt
-if(조건식){
-  문장;
-  ...
-}else{
+for(초기값; 조건식; 증가_감소;){
   문장;
   ...
 }
 ```
 
 ```js
-let num = 9;
+// for의 조건식이 참인 동안 문장들을 반복실행
+// 1. i의 값을 1로 초기화
+// 2. 조건식 1 <= 3; 참, 1출력
+// 3. i의 값이 1 증가
+// 4. i의 값이 2가 됨
+// 5. 조건식 2 <= 3 참, 2출력
+// 6. i의 값이 1 증가
+// 7. i의 값이 3이 됨
+// 8. 조건식 3 < = 3 참, 3 출력
+// 9. i의 값이 1 증가
+// 10. i의 값이 4가 됨
+// 11. 조건식 4 <= 3 거짓, for 루프를 빠져나간다.
 
-if (num % 2 == 0) {
-  console.log(`${num}은(는) 짝수 입니다.`);
-} else {
-  console.log(`${num}은(는) 홀수 입니다.`);
+for (let i = 1; i <= 3; i++) console.log(i);
+
+// for 문을 이용해서 1 ~ 100 정수의 합계를 구하는 프로그램
+let sum = 0;
+// i가 1에서 100까지 값을 가지는 동안
+for (let i = 1; i <= 100; i++) sum += i;
+
+console.log(sum);
+// for문, 배열, 템플릿 문자열 이용하여 웹페이지 글자에 색을 설정
+const color = ["red", "green", "blue", "pink"];
+
+let text = "";
+
+// i는 0, 1, 2, 3의 값을 가지는 동안
+
+for (let i = 0; i <= 3; i++) {
+  // 템플릿 문자열 이용
+  text += `<span style="color:${color[i]}">안녕</span>`;
+  // document.write(text);
 }
-
-// 70점 이상이면 합격, 그렇지 않으면 불합격
-
-let score = 65;
-let result;
-
-if (score >= 70) {
-  result = "합격";
-} else {
-  result = "불합격";
-}
-
-console.log(result);
+console.log(text);
+document.write(text);
 ```
 
-## 6.2. if ~ else if ~ else 구문
+## 8.2 for in 문
 
-```txt
-if () {
-  result = "합격";
-} else if(조건식) {
-  처리값
-} else {
-  처리값
-}
-```
-
-## 7. switch 구문
-
-- if문과 거의 같은 방식으로 동작
+- 객체의 요소들을 반복해서 읽어올 때 for in
 
 ```js
-// 괄호 안에 있는 변수의 값에 따라
-switch (변수) {
-// 해당 case에 있는 문장들이 실행
-  case 값1:
-    문장;
-    ...
-    return / break; // 둘중 하나
-  case 값2:
-    문장;
-    ...
-  default: // 해당 되지 않을 때 이거 실행해라
-    문장;
-    ...
+// 객체 내 각 요소들을 반복해서 읽어와
+// 그 키를 변수에 저장하는 식으로
+// 반복 루프가 진행
+for (변수 in 객체) {
+  문장;
+  ...
 }
+```
+
+```js
+const member = { id: "kdhong", username: "홍길동", age: 30 };
+
+// 객체의 요소 수 만큼, 즉 세번 반복 루프 진행
+// x는 오브젝트 내부에 키/밸류의 랭스잡아서 알려주는거같음.
+
+for (let x in member) {
+  console.log(member[x]);
+}
+```
+
+## 8.3. for of 문
+
+```js
+for (변수 of 배열) {
+  문장;
+  ...
+}
+```
+
+```js
+const scores = [88, 75, 95, 90, 78];
+
+// 배열 까서 >  변수에 담아주고 > 값을 돌려줌.
+for (let score of scores) {
+  console.log(score);
+}
+// 지역변수라서 나오지 않음.
+// console.log(score);
 ```

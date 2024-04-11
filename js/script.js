@@ -1,8 +1,15 @@
-const scores = [88, 75, 95, 90, 78];
+// 이중 for 문
+// let x = 2;
+// let result;
+// for (let y = 1; y <= 9; y++) {
+//   result = x * y;
+//   console.log(`${x} x ${y} = ${result}`);
+// }
 
-// 배열 까서 >  변수에 담아주고 > 값을 돌려줌.
-for (let score of scores) {
-  console.log(score);
+let resultAll;
+for (let x = 2; x <= 9; x++) {
+  for (let y = 1; y <= 9; y++) {
+    result = x * y;
+    console.log(`${x} x ${y} = ${result} \r`);
+  }
 }
-// 지역변수라서 나오지 않음.
-// console.log(score);

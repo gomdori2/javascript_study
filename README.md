@@ -1,124 +1,43 @@
-# 8. for 문
+# 9. while 문
 
-## 8.1 for 문
-
-- 특정 코드를 반복해서 실행 for, while, do while
+## 9.1. while 문의 기본구조
 
 ```js
-for(초기값; 조건식; 증가_감소;){
+while(조건식){
   문장;
   ...
 }
 ```
 
+- while 문은 조건식이 참인 동안 문장, ... 을 반복 실행
+
 ```js
-// for의 조건식이 참인 동안 문장들을 반복실행
-// 1. i의 값을 1로 초기화
-// 2. 조건식 1 <= 3; 참, 1출력
-// 3. i의 값이 1 증가
-// 4. i의 값이 2가 됨
-// 5. 조건식 2 <= 3 참, 2출력
-// 6. i의 값이 1 증가
-// 7. i의 값이 3이 됨
-// 8. 조건식 3 < = 3 참, 3 출력
-// 9. i의 값이 1 증가
-// 10. i의 값이 4가 됨
-// 11. 조건식 4 <= 3 거짓, for 루프를 빠져나간다.
+// 안녕 다섯 번 출력하기
 
-for (let i = 1; i <= 3; i++) console.log(i);
+let i = 1;
 
-// for 문을 이용해서 1 ~ 100 정수의 합계를 구하는 프로그램
-let sum = 0;
-// i가 1에서 100까지 값을 가지는 동안
-for (let i = 1; i <= 100; i++) sum += i;
-
-console.log(sum);
-// for문, 배열, 템플릿 문자열 이용하여 웹페이지 글자에 색을 설정
-const color = ["red", "green", "blue", "pink"];
-
-let text = "";
-
-// i는 0, 1, 2, 3의 값을 가지는 동안
-
-for (let i = 0; i <= 3; i++) {
-  // 템플릿 문자열 이용
-  text += `<span style="color:${color[i]}">안녕</span>`;
-  // document.write(text);
+while (i <= 5) {
+  console.log("안녕");
+  i++;
 }
-console.log(text);
-document.write(text);
 ```
 
-## 8.2 for in 문
+## 9.2. do while 문
 
-- 객체의 요소들을 반복해서 읽어올 때 for in
+- 기본구조
 
 ```js
-// 객체 내 각 요소들을 반복해서 읽어와
-// 그 키를 변수에 저장하는 식으로
-// 반복 루프가 진행
-for (변수 in 객체) {
+do {
   문장;
   ...
-}
+} while(조건식)
 ```
 
 ```js
-const member = { id: "kdhong", username: "홍길동", age: 30 };
+// 안녕 다섯 번 출력하기
 
-// 객체의 요소 수 만큼, 즉 세번 반복 루프 진행
-// x는 오브젝트 내부에 키/밸류의 랭스잡아서 알려주는거같음.
-
-for (let x in member) {
-  console.log(member[x]);
-}
-```
-
-## 8.3. for of 문
-
-```js
-for (변수 of 배열) {
-  문장;
-  ...
-}
-```
-
-```js
-const scores = [88, 75, 95, 90, 78];
-
-// 배열 까서 >  변수에 담아주고 > 값을 돌려줌.
-for (let score of scores) {
-  console.log(score);
-}
-// 지역변수라서 나오지 않음.
-// console.log(score);
-```
-
-## 8.4. 이중 for 문
-
-- for 루프 안에 다시 for 루프가 들어가 있는 형태
-- 리액트에는 잘 안쓴다.
-
-```js
-for (변수; 돌릴만큼; 변수++) {
-  for (변수; 돌릴만큼; 변수++) {}
-}
-```
-
-```js
-// 이중 for 문
-let x = 2;
-let result;
-for (let y = 1; y <= 9; y++) {
-  result = x * y;
-  console.log(`${x} x ${y} = ${result}`);
-}
-
-let resultAll;
-for (let x = 2; x <= 9; x++) {
-  for (let y = 1; y <= 9; y++) {
-    result = x * y;
-    console.log(`${x} x ${y} = ${result} \r`);
-  }
-}
+let x = -10;
+do {
+  console.log("안녕");
+} while (x > 0);
 ```

@@ -1,69 +1,121 @@
-# 12. 생성자 함수
+# 13. 배열
 
-### 12.1.1 생성자 함수란?
+## 13.1 배열이란
 
-- 생성자함수(constructor function)는 일반 함수와 기능적인 차이는 없다.
-- 그러나 일반 함수와 달리 생성자 함수는 new 연산자와 함께 자바스크립트에서
-  객체를 생성하기 위해 사용
-- 컨벤션
-  - 생성자 함수를 정의할 때에는 일반함수와 구분하기 위해 첫 글자를 대문자로 시작
+- 여러 값을 하나의 변수에 저장할 수 있게 해주는 특별한 변수 array
+
+### 13.1.1. 배열의 생성
 
 ```js
-// 생성자 함수의 객체 생성 예시
-// 생성자 함수 Member는 세 개의 매개변수 id, name, age를 가진다.
-function Member(id, name, age) {
-  // 키워드 this는 생성자 함수로 생성되는 객체 자신을 의미
-  // 따라서 this.id는 객체 자신의 프로퍼티 id를 의미
-  this.id = id;
-  this.name = name;
-  this.age = age;
-}
+const fruits = ["사과", "딸기", "참외"];
 
-const member1 = new Member("kdhong", "홍길동", 30);
-const member2 = new Member("ssss", "ㄴㄴㄴㄴ", 20);
-const member3 = new Member("aaaa", "ㅁㅁㅁㅁ", 10);
 let text = "";
 
-text += member1.name;
-text += member2.name;
-text += member3.name;
+text += fruits;
+text += fruits[0];
+text += fruits[1];
+text += fruits[2];
 
-document.getElementById("show").innerHTML = text;
+console.log(text);
+
+const fruits1 = new Array("오렌지", "사과", "딸기", "참외");
+
+console.log(fruits1);
 ```
 
-### 12.1.1. 생성자 함수의 메서드
+### 13.1.2. 배열요소의 메서드들
+
+- join()메서들
+
+- 배열을 문자열로 변경
 
 ```js
-// 생성자 함수의 객체 생성 예시
-// 생성자 함수 Member는 세 개의 매개변수 id, name, age를 가진다.
-function Member(id, name, age) {
-  // 키워드 this는 생성자 함수로 생성되는 객체 자신을 의미
-  // 따라서 this.id는 객체 자신의 프로퍼티 id를 의미
-  this.id = id;
-  this.name = name;
-  this.age = age;
-  this.getName = function () {
-    return `나의 이름은 ${this.name}입니다.`;
-  };
-}
-
-const member1 = new Member("kdhong", "홍길동", 30);
-const member2 = new Member("ssss", "ㄴㄴㄴㄴ", 20);
-const member3 = new Member("aaaa", "ㅁㅁㅁㅁ", 10);
-let text = "";
-
-text += `${member1.name} <br/>`;
-text += `${member2.name} <br/>`;
-text += `${member3.name} <br/>`;
-text += `${member1.getName()}`;
-
-document.getElementById("show").innerHTML = text;
+const animals = ["사자", "사슴", "호랑이", "펭귄"];
+let str1 = animals.join();
+let str2 = animals.join("/");
+console.log(animals);
+console.log(str1);
+console.log(str2);
 ```
 
-## 12.2. 프로토 타입
+- push() 메서드 : 배열끝에 추가
 
-- 나중에,,,, to be continue
+```js
+const animals = ["사자", "사슴", "호랑이", "펭귄"];
 
-## 12.3. 클래스
+let x = animals.push("도마뱀");
+console.log(animals);
+```
 
-- 나중에,,,, to be continue
+- pop() 메서드 : 배열의 마지막요소 삭제
+
+```js
+const animals = ["사자", "사슴", "호랑이", "펭귄"];
+
+let x = animals.pop();
+console.log(animals);
+```
+
+- shift() 메서드 : 배열의 첫요소 삭제
+
+```js
+const animals = ["사자", "사슴", "호랑이", "펭귄"];
+
+let x = animals.shift();
+console.log(animals);
+```
+
+- **splice()** 메서드 : 배열에 요소를 추가하거나 삭제할 때 사용
+
+```js
+const animals = ["사자", "사슴", "호랑이", "펭귄", "여우", "도마뱀"];
+
+let text = "";
+let arr;
+// 인덱스 2인 요소 "사슴" 부터 3개의 요소를 삭제하고 "개구리" 삽입
+
+arr = animals;
+console.log(arr);
+arr = arr.splice(2, 3, "개구리");
+console.log(arr);
+```
+
+- **indexOf()** 메서드 : 배열에서 특정 문자열의 위치, 즉 인덱스 값을 반환
+
+```js
+const animals = ["사자", "사슴", "호랑이", "펭귄", "여우", "도마뱀"];
+
+let index1 = animals.indexOf("사슴");
+console.log(index1);
+```
+
+- **includes()** 메서드 : 특정 요소의 존재 여부를 파악
+
+```js
+const animals = ["사자", "사슴", "호랑이", "펭귄", "여우", "도마뱀"];
+
+// 배열 초기값 설정
+const result = animals.includes("악어");
+if (result == false) {
+  console.log("ss");
+}
+console.log(result);
+```
+
+- **slice()** 메서드 : 인덱스를 이용하여 특정 요소 추출
+
+```js
+const animals = ["사자", "사슴", "호랑이", "펭귄", "여우", "도마뱀"];
+
+// 사이에 있는 애들 불러옴
+// 사슴~펭귄
+// 끝자리는 출력 하지않음.
+// 음수 주면 뒤에서부터
+const result = animals.slice(1, 4);
+
+console.log(result);
+```
+
+- **find()** 메서드
+  : 특정 요소를 찾는 조건을 콜백함수를 통해 전달하여
+  조건에 해당하는 첫 번째 요소 값을 반환

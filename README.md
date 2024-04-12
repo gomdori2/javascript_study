@@ -251,3 +251,137 @@ fnc2();
   보안에 취약하고 예기치 못한 오류를 발생시킬 가능성이 있다.
 - 클로저는 전역변수가 아닌 변수를 전역 변수와 같은 방식으로 동작하지만
   그 값을 함부로 변경할 수 없도록 변수를 "사유화" 할 수 있는 방법을 제공
+
+- 클로저는 함수와 그 함수가 선언 될때의 렉시컬 환경과의 조합이다.
+
+- 지역변수 > 전역변수
+
+```js
+// 전역변수 렉시컬 => 구조 환경
+
+// 함수는 사용되면 나타났다가 사라짐
+// 그래서 지역변수로 할당된 값은 초기화 됨.
+// const increase = () => {
+//   counter += 1;
+//   console.log(counter);
+//   document.getElementById("show").innerHTML = counter;
+// };
+// 클로저임.
+const increase = (function () {
+  let counter = 0;
+  console.log(counter);
+
+  return function () {
+    counter += 1;
+    return counter;
+  };
+})();
+
+function incCounter() {
+  document.getElementById("show").innerHTML = increase();
+}
+```
+
+```js
+// 카운터 값 count를 createCounter 함수의 지역변수로 설정
+const createCounter = () => {
+  let count = 0; // 카운터의 카운트 초기 값 설정
+  console.log(count);
+
+  // handleIncrement 함수는 count 변수에 접근하고 수정할 수 있다.
+  // 이 함수는 클로저이며
+  // createCounter 함수의 지역변수인 count를 기억한다.
+  const handleIncrement = () => {
+    console.log(count);
+    count += 1;
+    // 화면에 새로운 카운트 값을 업데이트 하겠다.
+    document.getElementById("show").innerHTML = count;
+  };
+  // 클로저인 handleIncrement 함수를 반환한다.
+  // 이 함수는 외부에서 호출될 수 있으며,
+  // createCounter의 count 변수에 계속해서 접근할 수 있다.
+
+  return handleIncrement;
+};
+
+const increment = createCounter();
+```
+
+- 리액트로 표현
+
+```js
+// dom
+import React, { useState } from "react";
+
+const Counter = () => {
+  const [count, setCount] = useState(0);
+
+  // useRef > 태그 참조 해당 hook 사용해야함.
+  // document.getElementById 하면 태그로 갈수도 있지만 오류터질수있음.
+  // useState() > 데이터 사용할 때 사용하는 hook
+
+  const handleIncrement = () => {
+    // 클릭 이벤트가 발생할 때마다 handleIncrement함수가 실행 된다.
+    // 이 함수는 setCount를 호출하여 현재 count상태를 업데이트 하는데
+    // 여기서 prevCount => prevCount + 1이라는 업데이트 함수를 사용한다.
+    // 이 함수는 현재 상태값을 인자로 받아 새로운 상태값을 반환 하는데
+    // 이 과정에서 클로저를 통해 prevCount의 최신 상태를 참조하고 있다.
+    setCount((prevCount) => prevCount + 1);
+  };
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={handleIncrement}>증가</button>
+    </div>
+  );
+};
+
+export default Counter;
+```
+
+# 10.6. 예외 처리(exception handling)
+
+- 코드 실행 중 예기치 못한 오류가 발생했을 때 코드의 흐름을 복구하는 기능
+  - 404 페이지, loader, 오류난거 알려주는거. 등등
+
+## 10.6.1. try catch 문
+
+- 기본 구조
+
+```js
+try {
+  alertt("안녕하세요.");
+  console.log("test");
+} catch (error) {
+  console.log(error);
+  console.log("error");
+}
+```
+
+## 10.6.2. try catch finally 문
+
+```js
+const checkInput = () => {
+  let input_elem = document.getElementById("input1");
+  let a = input_elem.value;
+  document.getElementById("show").innerHTML = "";
+  // isNaN() NaN 체크 해줌.
+  try {
+    if (a === "") {
+      throw "비어있다.";
+    }
+    if (isNaN(a)) {
+      throw "숫자가 아닙니다.";
+    }
+    a = Number(a);
+    if (a < 0 || a > 9) {
+      throw "0~9 사이 숫자가 아닙니다.";
+    }
+  } catch (error) {
+    document.getElementById("show").innerHTML = `오류 : ${error}`;
+  } finally {
+    input_elem.value = "";
+  }
+};
+```

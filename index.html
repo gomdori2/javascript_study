@@ -6,12 +6,20 @@
     <title>자바스크립트 스터디</title>
   </head>
   <body>
-    <button type="button" onclick="changeColor()">색상변경</button>
+    <h3>0 ~ 9 숫자가 입력되었는지 체크하기</h3>
+    <input type="text" id="input1" />
+    <span id="show"></span><br />
+    <button onclick="checkInput()">확인</button>
+    <!-- <p id="show">0</p>
+    <button type="button" onclick="increment()">증가</button> -->
+    <!-- <script src="./js/script.js" /> -->
+    <!-- ********************************************************************** -->
+
+    <!-- <button type="button" onclick="changeColor()">색상 변경</button>
     <div
       id="box"
-      style="width: 100px; height: 100px; background-color: green"
+      style="width: 100px; height: 100px; background-color: green; color: white"
     ></div>
-    <!-- <script src="./js/script.js" /> -->
 
     <script>
       let box = document.getElementById("box");
@@ -19,15 +27,18 @@
       const change = (function () {
         let toggle = false;
         return function () {
-          box.style.backgroundColor = toggle ? "blue" : "red";
           toggle = !toggle;
-          return toggle;
+          box.style.backgroundColor = toggle ? "blue" : "red";
+          box.innerHTML = toggle ? "파란색" : "빨간색";
         };
       })();
 
       function changeColor() {
-        document.getElementById("box").innerHTML = change();
+        change();
       }
-    </script>
+    </script> -->
+
+    <!-- ********************************************************************** -->
+    <script src="./js/exception.js" />
   </body>
 </html>

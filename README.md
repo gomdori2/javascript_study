@@ -292,3 +292,151 @@ function changeSize() {
 ```
 
 ## 14.6. Document 객체의 프로퍼티
+
+- forms
+- links
+- images
+
+### 14.6.1. URL 프로퍼티
+
+- URL : HTML 문서의 URL을 반환
+
+```js
+document.getElementById("show").innerHTML = document.URL;
+```
+
+### 14.6.2. title 프로퍼티
+
+- title : HTML 문서의 제목을 설정하거나 반환 (웹 탭에 나오는 명)
+
+```js
+document.getElementById("show").innerHTML = document.title;
+document.title = "야옹";
+```
+
+### 14.6.3. forms 프로퍼티
+
+```html
+<!-- 개발자적인 사고(로직을 생각하자)를 할 수 있게 하자. 그래야 GPT가 해준다. -->
+<!-- button의 타입을 button으로 지정해줘야 submit으로 인한 load가 안된다. -->
+<form id="form1" onsubmit="false">
+  아이디 : <input type="text" name="uid" /><br />
+  이름 : <input type="text" name="name" /><br />
+  비밀번호 : <input type="password" name="upw" /><br />
+  <button type="button" onclick="getInfo()">확인</button>
+</form>
+<p id="show"></p>
+```
+
+```js
+function getInfo(e) {
+  const info = document.forms["form1"];
+  let text = "";
+  for (let i = 0; i < info.length; i++) {
+    text += info.elements[i].value + "<br />";
+  }
+  document.getElementById("show").innerHTML = text;
+}
+// 혹시나 this 쓸까봐 만들어놓음.
+// const getInfo2 = function () {};
+```
+
+### 14.6.4. links 프로퍼티
+
+- 속성들을 말함
+  - a태그의 href
+
+### 14.6.5. images 프로퍼티
+
+- 속성들을 말함
+  - img 태그의 src 등등
+
+## 14.7. DOM 노드
+
+- DOM 트리의 가장 기본이 되는 `HTML 요소, 속성, 텍스트` 등은 모두 node라 함
+  - tree구조 요소(element)로 구성되어있다.
+  - 요소 뿐만 아니라 속성! 텍스트!까지
+
+### 14.7.1. 노드의 종류
+
+- 계층 구조를 잘 잡자.
+  - 노드들은 부모 노드가 무조건 1개이다.
+  - 부모 노드 위는 조상 노드이다.
+  - 그러나 루트는 부모 노드가 없음.
+  - root node 를 포함한 모든 node는 하나 또는 여러 개의 자식 노드를 가질 수 있다.
+- 노드 종류
+  - 요소노드(element node)
+  - 속성노드(attibute node)
+  - 텍스트 노드(text node)
+  - 문서 노드(document node)
+  - 주석 노드(comment node)
+  - 루트 노드(root node)
+    - DOM Tree 구조의 최상위 요소
+
+### 14.7.2. 노드 추가하기
+
+```html
+<div id="box">
+  <p>단락1</p>
+  <p>단락2</p>
+</div>
+```
+
+```js
+const elem = document.createElement("p");
+
+const text = document.createTextNode("새로운 단락");
+
+const box = document.getElementById("box");
+
+// 변수로 받는디 왜 문자로 받니
+// elem.appendChild("text");
+// box.appendChild("elem");
+elem.appendChild(text);
+box.appendChild(elem);
+```
+
+### 14.7.3. 노드 삽입하기
+
+```html
+<div id="box">
+  <p id="p1">단락1</p>
+  <p id="p2">단락2</p>
+</div>
+```
+
+```js
+const elem = document.createElement("p");
+
+const text = document.createTextNode("새로운 단락");
+
+const p2 = document.getElementById("p2");
+
+// 변수로 받는디 왜 문자로 받니
+// elem.appendChild("text");
+// box.appendChild("elem");
+elem.append(text);
+
+document.getElementById("box").insertBefore(elem, p2);
+```
+
+### 14.7.4. 노드 삭제하기
+
+```js
+const elem = document.getElementById("p2");
+
+elem.remove();
+```
+
+### 14.7.5. 노드 변경하기
+
+```js
+const elem = document.createElement("p");
+
+const text = document.createTextNode("변경한 단락");
+
+elem.appendChild(text);
+const p1 = document.getElementById("p1");
+// replaceChild(바꾼거, 바꿀친구) = replaceChild(elem, p1)
+document.getElementById("box").replaceChild(elem, p1);
+```

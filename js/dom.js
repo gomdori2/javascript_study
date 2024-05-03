@@ -1,9 +1,8 @@
-let num = 0;
-function changeImg() {
-  // 따로 예외 처리안함.
-  num++;
-  document.getElementById("img").src = `./images/image-${num}.png`;
-}
-function changeSize() {
-  document.getElementById("img").width = "50";
-}
+const elem = document.createElement("p");
+
+const text = document.createTextNode("변경한 단락");
+
+elem.appendChild(text);
+const p1 = document.getElementById("p1");
+// replaceChild(바꾼거, 바꿀친구) = replaceChild(elem, p1)
+document.getElementById("box").replaceChild(elem, p1);

@@ -1,0 +1,38 @@
+.imgContWrap {
+  width: 237px;
+}
+#imgWidth {
+  margin-left: 6px;
+}
+.btnWrap {
+  margin: 7px 9px;
+}
+button {
+  font-weight: bold;
+  cursor: pointer;
+  height: 30px;
+  width: 108px;
+  color: blanchedalmond;
+  background: steelblue;
+  border-radius: 8px;
+  border-style: none;
+}
+.btn1 {
+  color: #7d7d7d;
+  background: #ffb0b0;
+  border-radius: 8px;
+  border-style: none;
+}
+
+.btn2 {
+}
+
+input {
+  border: 1px solid #e3dddd;
+  border-radius: 5px;
+}
+label {
+  font-size: 16px;
+  font-weight: 600;
+  font-family: pretendard;
+}

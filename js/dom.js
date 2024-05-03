@@ -1,8 +1,14 @@
-const elem = document.createElement("p");
+let text = "";
+const btn = document.getElementById("btn");
 
-const text = document.createTextNode("변경한 단락");
+btn.addEventListener("click", () => {
+  text += "안녕하세영!<br/>";
+  document.getElementById("show").innerHTML = text;
+  btn.innerHTML = "와아아아아";
+});
 
-elem.appendChild(text);
-const p1 = document.getElementById("p1");
-// replaceChild(바꾼거, 바꿀친구) = replaceChild(elem, p1)
-document.getElementById("box").replaceChild(elem, p1);
+btn.addEventListener("click", () => {
+  text += "반갑습니다!<br/>";
+  document.getElementById("show").innerHTML = text;
+  btn.innerHTML = "와아아아아";
+});

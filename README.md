@@ -61,3 +61,144 @@ btn.addEventListener("click", () => {
   btn.innerHTML = "와아아아아";
 });
 ```
+
+### 15.2. 마우스 이벤트
+
+- 마우스에 관련된 이벤트는 웹에서 가장 많이 사용된다.
+
+- onclick : 사용자가 요소를 클릭 했을 때
+- ondblclick : 사용자가 요소를 더블 클릭 했을 때
+- onmouseover : 마우스 포인터가 요소 위에 올라갔을 때
+  - 자식요소에 대해서도 동작
+- onmouseout : 마우스 포인터가 요소에서 벗어날때
+  - 자식요소에 대해서도 동작
+- onmouseenter : 마우스 포인터가 요소에 안으로 들어갔을때
+  - 자식요소에 동작 하지않음
+- onmouseleave : 마우스 포인터가 요소에서 외부로 나갈 때
+  - 자식요소에 동작 하지않음
+- onmousemove : 마우스 포인터가 요소안에서 움직일 때
+
+### 15.2.1. onclick/ondblclick 이벤트
+
+```html
+<button id="btn" onclick="showMessage1()">클릭</button>
+<button id="dbBtn" ondblclick="showMessage2()">더블클릭</button>
+<p id="show"></p>
+```
+
+```js
+const show = document.getElementById("show");
+
+function showMessage1() {
+  show.innerHTML = "클릭";
+}
+function showMessage2() {
+  show.innerHTML = "클릭 두번";
+}
+```
+
+### 15.2.2. onmouseover/onmouseout 이벤트
+
+- 버블링이 있어서 자식요소까지 이벤트가 전파됨
+
+```html
+<button id="btn" onmouseover="changeBg1(this)" onmouseout="changeBg2(this)">
+  마우스를 올려보세요.
+</button>
+<p id="show"></p>
+```
+
+```js
+const show = document.getElementById("show");
+
+function changeBg1(btn) {
+  btn.style.backgroundColor = "pink";
+}
+function changeBg2(btn) {
+  btn.style.backgroundColor = "blue";
+}
+```
+
+### 15.2.3. onmouseenter 이벤트
+
+- onmouseover 이벤트와 유사한 기능
+- 자식요소에 들어가도 이벤트 작동 안함.
+
+```html
+<style>
+  div#box1 {
+    border: solid 4px red;
+  }
+  div#box2 {
+    border: solid 4px blue;
+  }
+  p {
+    border: solid 1px #000;
+  }
+</style>
+<div id="box1" onmouseenter="increaseX()">
+  <p>단락1</p>
+  <span id="show1"></span>
+</div>
+<div id="box2" onmouseover="increaseY()">
+  <p>단락2</p>
+  <span id="show2"></span>
+</div>
+```
+
+```js
+const show = document.getElementById("show");
+let x = 0;
+let y = 0;
+function increaseX() {
+  document.getElementById("show1").innerHTML = x++;
+}
+function increaseY() {
+  document.getElementById("show2").innerHTML = y++;
+}
+```
+
+### 15.2.4. onmouseleave 이벤트
+
+- onmouseout 이벤트와 유사한 기능
+- 자식요소에서 나가면 다른요소로 인식해서 이벤트 작동.
+
+```html
+<div id="box1" onmouseleave="increaseX()">
+  <p>단락1</p>
+  <span id="show1"></span>
+</div>
+<div id="box2" onmouseout="increaseY()">
+  <p>단락2</p>
+  <span id="show2"></span>
+</div>
+```
+
+```js
+
+```
+
+### 15.2.4. onmousemove 이벤트
+
+- 요소 내에서 마우스가 이동할 때 발생
+
+```html
+<style>
+  div#box {
+    border: solid 4px red;
+    width: 300px;
+    height: 200px;
+  }
+</style>
+<div id="box" onmousemove="showCoord(event)">
+  <p id="show"></p>
+</div>
+```
+
+```js
+const show = document.getElementById("show");
+function showCoord(e) {
+  let text = "좌표 : (" + e.clientX + "," + e.clientY + ")";
+  document.getElementById("show").innerHTML = text;
+}
+```

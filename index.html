@@ -11,10 +11,18 @@
     <title>자바스크립트 스터디</title>
     <link rel="stylesheet" href="./index.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+      div#box {
+        border: solid 4px red;
+        width: 300px;
+        height: 200px;
+      }
+    </style>
   </head>
   <body>
-    <button id="btn" onclick="">우우우</button>
-    <p id="show"></p>
+    <div id="box" onmousemove="showCoord(event)">
+      <p id="show"></p>
+    </div>
     <script src="./js/dom.js"></script>
   </body>
 </html>

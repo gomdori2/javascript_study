@@ -1,3 +1,5 @@
+`컨테스트 api?`
+
 # 15. 이벤트
 
 - 이벤트란?
@@ -201,4 +203,86 @@ function showCoord(e) {
   let text = "좌표 : (" + e.clientX + "," + e.clientY + ")";
   document.getElementById("show").innerHTML = text;
 }
+```
+
+### 15.3. 포커스 이벤트
+
+- 사용처 : 필수값 입력이 안되어 있을 시
+
+- onfocus : 요소가 포커스를 얻었을 때
+  - 텍스트나 비밀번호 입력창 안에 마우스를 클릭하면 마우스 커서가 깜빡인다.
+    - 이런 상태를 포커스를 얻었다.
+- onblur : 요소가 포커스를 잃었을 때
+  - 입력창 외부를 클릭하면 포커스를 잃게 된다.
+
+```html
+<input type="text" id="uId" /><br />
+<input type="password" id="uPw" />
+```
+
+```js
+const userId = document.getElementById("uId");
+const userPw = document.getElementById("uPw");
+function changeBgColor1(tag, color) {
+  tag.style.backgroundColor = color;
+}
+function changeBgColor2(tag, color) {
+  tag.style.background = color;
+}
+
+userId.onfocus = function () {
+  changeBgColor1(userId, "yellow");
+};
+
+userId.onblur = function () {
+  changeBgColor2(userId, "gray");
+};
+
+userPw.onfocus = function () {
+  changeBgColor1(userPw, "blue");
+};
+
+userPw.onblur = function () {
+  changeBgColor2(userPw, "red");
+};
+```
+
+## 15.4. 기타 이벤트
+
+### 15.4.1. onchange 이벤트
+
+```html
+<label for="sz">
+  사이즈:
+  <select name="size" id="sz">
+    <option value="">선택</option>
+    <option value="small">S</option>
+    <option value="midium">M</option>
+    <option value="large">L</option>
+    <option value="xlarge">XL</option>
+  </select>
+</label>
+<p id="show">사이즈를 선택해주세요.</p>
+```
+
+```js
+const szSelect = document.getElementById("sz");
+// this 조심해라.
+szSelect.addEventListener("change", (e) => {
+  const show = document.getElementById("show");
+  show.innerHTML = `선택한 사이즈는 : ${e.target.value} 입니다.`;
+  // switch 문으로 바꿀것.
+  if (e.target.value === "small") {
+    show.style.backgroundColor = "red";
+  } else if (e.target.value === "midium") {
+    show.style.backgroundColor = "green";
+  } else if (e.target.value === "large") {
+    show.style.backgroundColor = "blue";
+  } else if (e.target.value === "xlarge") {
+    show.style.backgroundColor = "yellow";
+  } else {
+    show.innerHTML = `사이즈를 선택해주세요.`;
+    show.style.backgroundColor = "";
+  }
+});
 ```
